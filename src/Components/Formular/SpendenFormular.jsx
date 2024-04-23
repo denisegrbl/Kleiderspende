@@ -91,7 +91,7 @@ const SpendenFormular = () => {
           <p>Ort: {formValues.abholung ? 'Abholadresse' : 'Geschäftsstelle'}</p>
         </div>
       ) : (
-        <form className='formular-1' onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <label>
             Name:
             <input
@@ -112,7 +112,7 @@ const SpendenFormular = () => {
             />
           </label>
           <br />
-          <label>
+          <label className="checkbox-container">
             Abholung:
             <input
               type="checkbox"
@@ -122,7 +122,7 @@ const SpendenFormular = () => {
             />
           </label>
           <br />
-          <label>
+          <label className="checkbox-container">
             Geschäftsstelle:
             <input
               type="checkbox"
@@ -171,8 +171,9 @@ const SpendenFormular = () => {
 
           <label>
             Art der Kleidung:
-            <br />
-            <label>
+              <br />
+              <br />
+            <label className="checkbox-container">
               Kleid
               <input
                 type="checkbox"
@@ -181,7 +182,7 @@ const SpendenFormular = () => {
                 onChange={handleChange}
               />
             </label>
-            <label>
+            <label className="checkbox-container">
               Hose
               <input
                 type="checkbox"
@@ -190,7 +191,7 @@ const SpendenFormular = () => {
                 onChange={handleChange}
               />
             </label>
-            <label>
+            <label className="checkbox-container">
               Jacke
               <input
                 type="checkbox"
@@ -199,7 +200,7 @@ const SpendenFormular = () => {
                 onChange={handleChange}
               />
             </label>
-            <label>
+            <label className="checkbox-container">
               Socken
               <input
                 type="checkbox"
@@ -211,7 +212,7 @@ const SpendenFormular = () => {
           </label>
           <br />
           <label>
-            Krisengebiet:
+              Krisengebiet:
             <select
               name="krisengebiet"
               value={formValues.krisengebiet}

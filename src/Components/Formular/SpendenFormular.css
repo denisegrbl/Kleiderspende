@@ -1,24 +1,58 @@
 .formular {
-    text-align: center;
-    font-size: 18px;
-    font-weight: 300;
-    margin: 70px 70px 30px;
+    max-width: 500px;
+    margin: auto;
+    padding: 20px;
     margin-top: 150px;
-    margin-bottom: 19%;
+    margin-bottom: 3%;
+    background-color: rgba(223,233,233, 0.7);
+}
+
+.formular label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.formular input[type="text"],
+.formular input[type="email"],
+.formular select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #a8cecf;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.formular input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+.btn {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.formular button:hover {
+    background-color: #a6dddf;
+    color: black;
+}
+
+.checkbox-container input[type="checkbox"] {
+    margin-left: 10px;
+    /* Ändere den Abstand nach Bedarf */
+}
+.angaben{
+    margin-bottom: 65%;
     line-height: 2;
 }
-.formular-1{
-    
-}
-.angaben h2{
+.angaben h2 {
     color: #48b6b9;
 }
+
 .angaben h6 {
     font-size: large;
-}
-@media (max-width:1016px) {
-    .formular {
-        margin-top: 170px;
-        flex-direction: column;
-    }
 }
