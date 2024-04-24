@@ -19,16 +19,16 @@ const Navbar = () => {
                 <img src={logo} alt='logo' className='logo'/>
                 <ul className={mobileMenu ? '' : 'hide-mobile-menu'}>
                     <li className='nav-link'>
-                        <ScrollLink to='hero' smooth={true} duration={500}>Home</ScrollLink>
+                        <ScrollLink to='hero' smooth={true} offset={0} duration={500}>Home</ScrollLink>
                     </li>
                     <li className='nav-link'>
-                        <ScrollLink to='program' smooth={true} duration={500}>Unser Program</ScrollLink>
+                        <ScrollLink to='program' smooth={true} offset={-260} duration={500}>Unser Program</ScrollLink>
                     </li>
                     <li className='nav-link'>
                         <ScrollLink to='about' smooth={true} duration={500}>Über uns</ScrollLink>
                     </li>
                     <li className='nav-link'>
-                        <ScrollLink to='spenden' smooth={true} duration={500}>Spenden</ScrollLink>
+                        <ScrollLink to='spenden' smooth={true} offset={-260} duration={500}>Spenden</ScrollLink>
                     </li>
 
                     <li>
