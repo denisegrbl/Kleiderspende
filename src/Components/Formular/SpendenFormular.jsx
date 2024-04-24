@@ -1,23 +1,23 @@
-import React, { useState } from 'react';
-import './SpendenFormular.css';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import "./SpendenFormular.css";
+import { Link } from "react-router-dom";
 
 const ZurueckButton = () => {
-    return (
-        <div className='back-btn'>
-            <Link to="/">Zurück zur Startseite</Link>
-        </div>
-    );
+  return (
+    <div className="back-btn">
+      <Link to="/">Zurück zur Startseite</Link>
+    </div>
+  );
 };
 
 const SpendenFormular = () => {
   const [formValues, setFormValues] = useState({
-    name: '',
-    email: '',
+    name: "",
+    email: "",
     abholung: false,
-    adresse: '',
-    plz: '',
-    ort: '',
+    adresse: "",
+    plz: "",
+    ort: "",
     geschaeftsstelle: false,
     kleidung: {
       Kleid: false,
@@ -25,106 +25,132 @@ const SpendenFormular = () => {
       Jacke: false,
       Socken: false,
     },
-    krisengebiet: '',
+    krisengebiet: "",
     success: false,
-    abholungDatum: '',
+    abholungDatum: "",
   });
 
   const getCurrentTime = () => {
     const now = new Date();
     const hours = now.getHours();
     const minutes = now.getMinutes();
-    const date = now.toLocaleDateString('de-DE');
-    return `${date} um ${hours}:${minutes < 10 ? '0' : ''}${minutes} Uhr`;
+    const date = now.toLocaleDateString("de-DE");
+    return `${date} um ${hours}:${minutes < 10 ? "0" : ""}${minutes} Uhr`;
   };
 
   const getRandomTime = () => {
     const randomHours = Math.floor(Math.random() * 8) + 9; // Random hours from 9 to 16
     const randomMinutes = Math.floor(Math.random() * 60); // Random minutes from 0 to 59
-    return `${randomHours}:${randomMinutes < 10 ? '0' : ''}${randomMinutes}`;
+    return `${randomHours}:${randomMinutes < 10 ? "0" : ""}${randomMinutes}`;
   };
 
   const handleChange = (e) => {
     const { name, value, checked } = e.target;
-    if (name === 'abholung' && checked) {
+    if (name === "abholung" && checked) {
       const currentDate = new Date();
-      const fourDaysLater = new Date(currentDate.getTime() + 4 * 24 * 60 * 60 * 1000);
-      const formattedDate = fourDaysLater.toLocaleDateString('de-DE');
+      const fourDaysLater = new Date(
+        currentDate.getTime() + 4 * 24 * 60 * 60 * 1000,
+      );
+      const formattedDate = fourDaysLater.toLocaleDateString("de-DE");
       const randomTime = getRandomTime();
       const abholungDatum = `${formattedDate} um ${randomTime} Uhr`;
-      setFormValues(prevState => ({
+      setFormValues((prevState) => ({
         ...prevState,
         abholung: true,
         geschaeftsstelle: false,
-        abholungDatum: abholungDatum
+        abholungDatum: abholungDatum,
       }));
-    } else if (name === 'geschaeftsstelle' && checked) {
-      setFormValues(prevState => ({
+    } else if (name === "geschaeftsstelle" && checked) {
+      setFormValues((prevState) => ({
         ...prevState,
         abholung: false,
         geschaeftsstelle: true,
-        abholungDatum: ''
+        abholungDatum: "",
       }));
-    } else if (name === 'Kleid' || name === 'Hose' || name === 'Jacke' || name === 'Socken') {
-      setFormValues(prevState => ({
+    } else if (
+      name === "Kleid" ||
+      name === "Hose" ||
+      name === "Jacke" ||
+      name === "Socken"
+    ) {
+      setFormValues((prevState) => ({
         ...prevState,
         kleidung: {
           ...prevState.kleidung,
-          [name]: checked
-        }
+          [name]: checked,
+        },
       }));
     } else {
-      setFormValues(prevState => ({
+      setFormValues((prevState) => ({
         ...prevState,
-        [name]: value
+        [name]: value,
       }));
     }
   };
 
   const handleBlur = (e) => {
     const { name, value } = e.target;
-    if (name === 'plz' && (value.length < 5 || value.slice(0, 2) !== '90')) {
-      alert('Die Postleitzahl muss mindestens 5 Zahlen enthalten und mit "90" beginnen.');
+    if (name === "plz" && (value.length < 5 || value.slice(0, 2) !== "90")) {
+      alert(
+        'Die Postleitzahl muss mindestens 5 Zahlen enthalten und mit "90" beginnen.',
+      );
     }
   };
 
   const handleSubmit = (e) => {
-  e.preventDefault();
-  if (formValues.abholung && !formValues.plz.startsWith('90')) {
-    alert('Die Abholadresse muss mit den ersten beiden Zahlen 90 beginnen.');
-    return;
-  }
-  if (formValues.geschaeftsstelle) {
-    setFormValues(prevState => ({ ...prevState, success: true }));
-    return;
-  }
-  if (!formValues.name || !formValues.email || !formValues.krisengebiet || !Object.values(formValues.kleidung).includes(true)) {
-    alert('Bitte füllen Sie alle erforderlichen Felder aus.');
-    return;
-  }
-  setFormValues(prevState => ({ ...prevState, success: true }));
-};
-
+    e.preventDefault();
+    if (formValues.abholung && !formValues.plz.startsWith("90")) {
+      alert("Die Abholadresse muss mit den ersten beiden Zahlen 90 beginnen.");
+      return;
+    }
+    if (formValues.geschaeftsstelle) {
+      setFormValues((prevState) => ({ ...prevState, success: true }));
+      return;
+    }
+    if (
+      !formValues.name ||
+      !formValues.email ||
+      !formValues.krisengebiet ||
+      !Object.values(formValues.kleidung).includes(true)
+    ) {
+      alert("Bitte füllen Sie alle erforderlichen Felder aus.");
+      return;
+    }
+    setFormValues((prevState) => ({ ...prevState, success: true }));
+  };
 
   return (
-    <div className='formular'>
+    <div className="formular">
       {formValues.success ? (
-        <div className='angaben'>
+        <div className="angaben">
           <h2>Vielen Dank für Ihre Spende!</h2>
           <h6>Hier sind Ihre Angaben:</h6>
           <p>Name: {formValues.name}</p>
           <p>Email: {formValues.email}</p>
           {formValues.abholung && (
             <>
-              <p>Abholadresse: {formValues.plz} {formValues.adresse}</p>
-              <p className='abholung'>Wir würden am {formValues.abholungDatum} kommen!</p>
+              <p>
+                Abholadresse: {formValues.plz} {formValues.adresse}
+              </p>
+              <p className="abholung">
+                Wir würden am {formValues.abholungDatum} kommen!
+              </p>
             </>
           )}
-          <p>Art der Kleidung: {Object.keys(formValues.kleidung).filter(key => formValues.kleidung[key]).join(', ')}</p>
+          <p>
+            Art der Kleidung:{" "}
+            {Object.keys(formValues.kleidung)
+              .filter((key) => formValues.kleidung[key])
+              .join(", ")}
+          </p>
           <p>Krisengebiet: {formValues.krisengebiet}</p>
-            <ZurueckButton />
-          <p className='datum-zeit'>{getCurrentTime()}</p>
-          <p className='ort'>{formValues.abholung ? `${formValues.plz} ${formValues.adresse}` : 'Nürnberg'}</p>
+          <ZurueckButton />
+          <p className="datum-zeit">{getCurrentTime()}</p>
+          <p className="ort">
+            {formValues.abholung
+              ? `${formValues.plz} ${formValues.adresse}`
+              : "Nürnberg"}
+          </p>
         </div>
       ) : (
         <form onSubmit={handleSubmit}>
@@ -267,7 +293,9 @@ const SpendenFormular = () => {
             </select>
           </label>
           <br />
-          <button className='btn' type="submit">Spende registrieren</button>
+          <button className="btn" type="submit">
+            Spende registrieren
+          </button>
         </form>
       )}
     </div>

@@ -1,15 +1,15 @@
 .impressum {
-    text-align: center;
-    font-size: 18px;
-    font-weight: 300;
-    margin: 70px 70px 30px;
-    margin-top: 140px;
-    margin-bottom: 22%;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 300;
+  margin: 70px 70px 30px;
+  margin-top: 140px;
+  margin-bottom: 22%;
 }
- 
-@media (max-width:1016px) {
-        .impressum {
-            margin-top: 170px;
-            flex-direction: column;
-        }
-    }
+
+@media (max-width: 1016px) {
+  .impressum {
+    margin-top: 170px;
+    flex-direction: column;
+  }
+}
