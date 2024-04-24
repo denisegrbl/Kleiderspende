@@ -1,5 +1,14 @@
 import React, { useState } from 'react';
 import './SpendenFormular.css';
+import { Link } from 'react-router-dom';
+
+const ZurueckButton = () => {
+    return (
+        <div className='back-btn'>
+            <Link to="/">Zurück zur Startseite</Link>
+        </div>
+    );
+};
 
 const SpendenFormular = () => {
   const [formValues, setFormValues] = useState({
@@ -8,15 +17,17 @@ const SpendenFormular = () => {
     abholung: false,
     adresse: '',
     plz: '',
+    ort: '',
     geschaeftsstelle: false,
     kleidung: {
-      kleid: false,
-      hose: false,
-      jacke: false,
-      socken: false,
+      Kleid: false,
+      Hose: false,
+      Jacke: false,
+      Socken: false,
     },
     krisengebiet: '',
-    success: false
+    success: false,
+    abholungDatum: '',
   });
 
   const getCurrentTime = () => {
@@ -27,21 +38,34 @@ const SpendenFormular = () => {
     return `${date} um ${hours}:${minutes < 10 ? '0' : ''}${minutes} Uhr`;
   };
 
+  const getRandomTime = () => {
+    const randomHours = Math.floor(Math.random() * 8) + 9; // Random hours from 9 to 16
+    const randomMinutes = Math.floor(Math.random() * 60); // Random minutes from 0 to 59
+    return `${randomHours}:${randomMinutes < 10 ? '0' : ''}${randomMinutes}`;
+  };
+
   const handleChange = (e) => {
     const { name, value, checked } = e.target;
     if (name === 'abholung' && checked) {
+      const currentDate = new Date();
+      const fourDaysLater = new Date(currentDate.getTime() + 4 * 24 * 60 * 60 * 1000);
+      const formattedDate = fourDaysLater.toLocaleDateString('de-DE');
+      const randomTime = getRandomTime();
+      const abholungDatum = `${formattedDate} um ${randomTime} Uhr`;
       setFormValues(prevState => ({
         ...prevState,
         abholung: true,
-        geschaeftsstelle: false
+        geschaeftsstelle: false,
+        abholungDatum: abholungDatum
       }));
     } else if (name === 'geschaeftsstelle' && checked) {
       setFormValues(prevState => ({
         ...prevState,
         abholung: false,
-        geschaeftsstelle: true
+        geschaeftsstelle: true,
+        abholungDatum: ''
       }));
-    } else if (name === 'kleid' || name === 'hose' || name === 'jacke' || name === 'socken') {
+    } else if (name === 'Kleid' || name === 'Hose' || name === 'Jacke' || name === 'Socken') {
       setFormValues(prevState => ({
         ...prevState,
         kleidung: {
@@ -59,19 +83,28 @@ const SpendenFormular = () => {
 
   const handleBlur = (e) => {
     const { name, value } = e.target;
-    if (name === 'plz' && value.length >= 2 && value.slice(0, 2) !== '90') {
-      alert('Die ersten beiden Zahlen der Postleitzahl müssen "90" sein.');
+    if (name === 'plz' && (value.length < 5 || value.slice(0, 2) !== '90')) {
+      alert('Die Postleitzahl muss mindestens 5 Zahlen enthalten und mit "90" beginnen.');
     }
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    if (formValues.abholung && !formValues.plz.startsWith('90')) {
-      alert('Die Abholadresse muss mit den ersten beiden Zahlen 90 beginnen.');
-      return;
-    }
+  e.preventDefault();
+  if (formValues.abholung && !formValues.plz.startsWith('90')) {
+    alert('Die Abholadresse muss mit den ersten beiden Zahlen 90 beginnen.');
+    return;
+  }
+  if (formValues.geschaeftsstelle) {
     setFormValues(prevState => ({ ...prevState, success: true }));
-  };
+    return;
+  }
+  if (!formValues.name || !formValues.email || !formValues.krisengebiet || !Object.values(formValues.kleidung).includes(true)) {
+    alert('Bitte füllen Sie alle erforderlichen Felder aus.');
+    return;
+  }
+  setFormValues(prevState => ({ ...prevState, success: true }));
+};
+
 
   return (
     <div className='formular'>
@@ -81,14 +114,17 @@ const SpendenFormular = () => {
           <h6>Hier sind Ihre Angaben:</h6>
           <p>Name: {formValues.name}</p>
           <p>Email: {formValues.email}</p>
-          <p>Abholung: {formValues.abholung ? 'Ja' : 'Nein'}</p>
           {formValues.abholung && (
-            <p>Abholadresse: {formValues.plz} {formValues.adresse}</p>
+            <>
+              <p>Abholadresse: {formValues.plz} {formValues.adresse}</p>
+              <p className='abholung'>Wir würden am {formValues.abholungDatum} kommen!</p>
+            </>
           )}
           <p>Art der Kleidung: {Object.keys(formValues.kleidung).filter(key => formValues.kleidung[key]).join(', ')}</p>
           <p>Krisengebiet: {formValues.krisengebiet}</p>
-          <p>Datum und Uhrzeit: {getCurrentTime()}</p>
-          <p>Ort: {formValues.abholung ? 'Abholadresse' : 'Geschäftsstelle'}</p>
+            <ZurueckButton />
+          <p className='datum-zeit'>{getCurrentTime()}</p>
+          <p className='ort'>{formValues.abholung ? `${formValues.plz} ${formValues.adresse}` : 'Nürnberg'}</p>
         </div>
       ) : (
         <form onSubmit={handleSubmit}>
@@ -99,6 +135,7 @@ const SpendenFormular = () => {
               name="name"
               value={formValues.name}
               onChange={handleChange}
+              required
             />
           </label>
           <br />
@@ -109,6 +146,7 @@ const SpendenFormular = () => {
               name="email"
               value={formValues.email}
               onChange={handleChange}
+              required
             />
           </label>
           <br />
@@ -141,6 +179,7 @@ const SpendenFormular = () => {
                   name="adresse"
                   value={formValues.adresse}
                   onChange={handleChange}
+                  required
                 />
               </label>
               <br />
@@ -153,6 +192,7 @@ const SpendenFormular = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   maxLength={5}
+                  required
                 />
               </label>
               <br />
@@ -163,6 +203,7 @@ const SpendenFormular = () => {
                   name="ort"
                   value={formValues.ort}
                   onChange={handleChange}
+                  required
                 />
               </label>
               <br />
@@ -171,14 +212,14 @@ const SpendenFormular = () => {
 
           <label>
             Art der Kleidung:
-              <br />
-              <br />
+            <br />
+            <br />
             <label className="checkbox-container">
               Kleid
               <input
                 type="checkbox"
-                name="kleid"
-                checked={formValues.kleidung.kleid}
+                name="Kleid"
+                checked={formValues.kleidung.Kleid}
                 onChange={handleChange}
               />
             </label>
@@ -186,8 +227,8 @@ const SpendenFormular = () => {
               Hose
               <input
                 type="checkbox"
-                name="hose"
-                checked={formValues.kleidung.hose}
+                name="Hose"
+                checked={formValues.kleidung.Hose}
                 onChange={handleChange}
               />
             </label>
@@ -195,8 +236,8 @@ const SpendenFormular = () => {
               Jacke
               <input
                 type="checkbox"
-                name="jacke"
-                checked={formValues.kleidung.jacke}
+                name="Jacke"
+                checked={formValues.kleidung.Jacke}
                 onChange={handleChange}
               />
             </label>
@@ -204,19 +245,20 @@ const SpendenFormular = () => {
               Socken
               <input
                 type="checkbox"
-                name="socken"
-                checked={formValues.kleidung.socken}
+                name="Socken"
+                checked={formValues.kleidung.Socken}
                 onChange={handleChange}
               />
             </label>
           </label>
           <br />
           <label>
-              Krisengebiet:
+            Krisengebiet:
             <select
               name="krisengebiet"
               value={formValues.krisengebiet}
               onChange={handleChange}
+              required
             >
               <option value="">Bitte auswählen</option>
               <option value="Afrika">Afrika</option>

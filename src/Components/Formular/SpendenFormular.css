@@ -5,6 +5,7 @@
     margin-top: 150px;
     margin-bottom: 3%;
     background-color: rgba(223,233,233, 0.7);
+    position: relative;
 }
 
 .formular label {
@@ -46,7 +47,7 @@
     /* Ändere den Abstand nach Bedarf */
 }
 .angaben{
-    margin-bottom: 65%;
+    margin-bottom: 84%;
     line-height: 2;
 }
 .angaben h2 {
@@ -55,4 +56,42 @@
 
 .angaben h6 {
     font-size: large;
+}
+.abholung{
+    font-size: large;
+    color: red;
+}
+.datum-zeit{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    
+    font-size: 14px;
+}
+.ort {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+
+    font-size: 14px;
+}
+.back-btn{
+    position: absolute;
+    bottom: 50px;
+    right: 10px;
+    background: none;
+    border: 1px solid #699496;
+    border-radius: 30px;
+    color: #699496;
+    display: block;
+    font-size: 12px;
+    font-weight: semibold;
+    padding: 11px 22px;
+    cursor: pointer;
+    outline: 0;
+}
+.back-btn:active,
+.back-btn:hover {
+    color: #fff;
+    background-color: #0ab6a6;
 }

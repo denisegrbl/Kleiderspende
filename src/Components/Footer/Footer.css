@@ -18,7 +18,7 @@
 .footer-link:hover {
     color: #a8cecf !important;
     cursor: pointer;
-
+}
 
 @media (max-width: 600px) {
     .footer {
