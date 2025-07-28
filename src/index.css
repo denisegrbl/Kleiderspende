@@ -38,7 +38,7 @@ a {
   background-color: #0ab6a6;
 }
 /*--media query--*/
-@media (max-width: 1200px) {
+@media screen and (max-width: 1023px) {
   .container {
     padding-left: 5%;
     padding-right: 5%;
@@ -48,4 +48,16 @@ a {
     border: 1px solid #000000;
     color: #000000;
   }
+    @media screen and (max-width: 767px) {
+      .container {
+        padding-left: 5%;
+        padding-right: 5%;
+      }
+  
+      .btn {
+        padding: 14px 22px;
+        border: 1px solid #000000;
+        color: #000000;
+      }
+}
 }

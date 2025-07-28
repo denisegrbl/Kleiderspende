@@ -2,8 +2,8 @@
   width: 100%;
   min-height: 100vh;
   background: linear-gradient(
-      rgba(125, 177, 189, 0.7),
-      rgba(125, 177, 189, 0.7)
+      #728a8fb3,
+      #728a8fb3
     ),
     url("../../assets/vorort.jpg");
   background-size: cover;
@@ -25,15 +25,15 @@
   max-width: 700px;
   margin: 10px auto 20px;
   line-height: 1.4;
-  font-size: 17px;
+  font-size: 20px;
 }
 
-@media (max-width: 850px) {
+@media screen and (max-width: 1023px) {
   .hero-texth1 {
     font-size: 40px;
   }
 }
-@media (max-width: 650px) {
+@media screen and (max-width: 767px) {
   .hero-text h1 {
     font-size: 30px;
     max-width: 400px;

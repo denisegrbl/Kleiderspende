@@ -20,9 +20,10 @@ const SpendenFormular = () => {
     ort: "",
     geschaeftsstelle: false,
     kleidung: {
-      Kleid: false,
-      Hose: false,
-      Jacke: false,
+      Kleider: false,
+      Hosen: false,
+      Jacken: false,
+      TShirts: false,
       Socken: false,
     },
     krisengebiet: "",
@@ -68,9 +69,10 @@ const SpendenFormular = () => {
         abholungDatum: "",
       }));
     } else if (
-      name === "Kleid" ||
-      name === "Hose" ||
-      name === "Jacke" ||
+      name === "Kleider" ||
+      name === "Hosen" ||
+      name === "Jacken" ||
+      name === "TShirts" ||
       name === "Socken"
     ) {
       setFormValues((prevState) => ({
@@ -97,27 +99,55 @@ const SpendenFormular = () => {
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (formValues.abholung && !formValues.plz.startsWith("90")) {
-      alert("Die Abholadresse muss mit den ersten beiden Zahlen 90 beginnen.");
+ const handleSubmit = (e) => {
+  e.preventDefault();
+
+  const isNameValid = formValues.name.trim() !== "";
+  const isEmailValid = formValues.email.trim() !== "";
+  const isKrisengebietValid = formValues.krisengebiet !== "";
+  const isKleidungValid = Object.values(formValues.kleidung).includes(true);
+  const isAbholung = formValues.abholung;
+  const isGeschaeftsstelle = formValues.geschaeftsstelle;
+
+  // Prüfen ob mindestens Abholung oder Geschäftsstelle gewählt wurde
+  if (!isAbholung && !isGeschaeftsstelle) {
+    alert("Bitte wählen Sie entweder 'Abholung' oder 'Geschäftsstelle'.");
+    return;
+  }
+
+  // PLZ-Prüfung bei Abholung
+  if (isAbholung && !formValues.plz.startsWith("90")) {
+    alert("Die Abholadresse muss mit den ersten beiden Zahlen 90 beginnen.");
+    return;
+  }
+
+  // Geschäftsstelle: keine Kleidung erforderlich
+  if (isGeschaeftsstelle) {
+    if (!isNameValid || !isEmailValid || !isKrisengebietValid || !isKleidungValid) {
+      alert("Bitte füllen Sie alle erforderlichen Felder aus und wählen Sie Kleidung aus.");
       return;
     }
-    if (formValues.geschaeftsstelle) {
-      setFormValues((prevState) => ({ ...prevState, success: true }));
+  }
+
+  // Abholung: Kleidung ist erforderlich
+  if (isAbholung) {
+    if (!isNameValid || !isEmailValid || !isKrisengebietValid || !isKleidungValid) {
+      alert("Bitte füllen Sie alle erforderlichen Felder aus und wählen Sie Kleidung aus.");
       return;
     }
-    if (
-      !formValues.name ||
-      !formValues.email ||
-      !formValues.krisengebiet ||
-      !Object.values(formValues.kleidung).includes(true)
-    ) {
-      alert("Bitte füllen Sie alle erforderlichen Felder aus.");
+  }
+
+  // Nur Kleidungsspenden ohne Abholung oder Geschäftsstelle (falls du das erlauben willst)
+  if (!isAbholung && !isGeschaeftsstelle) {
+    if (!isKleidungValid) {
+      alert("Bitte wählen Sie mindestens ein Kleidungsstück aus.");
       return;
     }
-    setFormValues((prevState) => ({ ...prevState, success: true }));
-  };
+  }
+
+  // Wenn alles korrekt ist
+  setFormValues((prevState) => ({ ...prevState, success: true }));
+};
 
   return (
     <div className="formular">
@@ -127,7 +157,14 @@ const SpendenFormular = () => {
           <h6>Hier sind Ihre Angaben:</h6>
           <p>Name: {formValues.name}</p>
           <p>Email: {formValues.email}</p>
-          {formValues.abholung && (
+          <p>
+            Art der Kleidung:{" "}
+            {Object.keys(formValues.kleidung)
+              .filter((key) => formValues.kleidung[key])
+              .join(", ")}
+          </p>
+          <p>Krisengebiet: {formValues.krisengebiet}</p>
+           {formValues.abholung && (
             <>
               <p>
                 Abholadresse: {formValues.plz} {formValues.adresse}
@@ -137,13 +174,6 @@ const SpendenFormular = () => {
               </p>
             </>
           )}
-          <p>
-            Art der Kleidung:{" "}
-            {Object.keys(formValues.kleidung)
-              .filter((key) => formValues.kleidung[key])
-              .join(", ")}
-          </p>
-          <p>Krisengebiet: {formValues.krisengebiet}</p>
           <ZurueckButton />
           <p className="datum-zeit">{getCurrentTime()}</p>
           <p className="ort">
@@ -241,29 +271,38 @@ const SpendenFormular = () => {
             <br />
             <br />
             <label className="checkbox-container">
-              Kleid
+              Kleider
               <input
                 type="checkbox"
-                name="Kleid"
-                checked={formValues.kleidung.Kleid}
+                name="Kleider"
+                checked={formValues.kleidung.Kleider}
+                onChange={handleChange}
+              />
+              </label>
+              <label className="checkbox-container">
+              TShirts
+              <input
+                type="checkbox"
+                name="TShirts"
+                checked={formValues.kleidung.TShirts}
                 onChange={handleChange}
               />
             </label>
             <label className="checkbox-container">
-              Hose
+              Hosen
               <input
                 type="checkbox"
-                name="Hose"
-                checked={formValues.kleidung.Hose}
+                name="Hosen"
+                checked={formValues.kleidung.Hosen}
                 onChange={handleChange}
               />
             </label>
             <label className="checkbox-container">
-              Jacke
+              Jacken
               <input
                 type="checkbox"
-                name="Jacke"
-                checked={formValues.kleidung.Jacke}
+                name="Jacken"
+                checked={formValues.kleidung.Jacken}
                 onChange={handleChange}
               />
             </label>
@@ -293,7 +332,7 @@ const SpendenFormular = () => {
             </select>
           </label>
           <br />
-          <button className="btn" type="submit">
+          <button className="small-btn" type="submit">
             Spende registrieren
           </button>
         </form>

@@ -3,13 +3,22 @@
   font-size: 18px;
   font-weight: 300;
   margin: 70px 70px 30px;
-  margin-top: 140px;
-  margin-bottom: 22%;
+  margin-top: 170px;
+  margin-bottom: 28%;
 }
 
-@media (max-width: 1016px) {
+@media screen and (max-width: 1023px) {
   .impressum {
-    margin-top: 170px;
+    margin-top: 180px;
     flex-direction: column;
+    margin-bottom: 310px;
   }
+
+@media screen and (max-width: 767px) {
+  .impressum {
+    margin-top: 200px;
+    flex-direction: column;
+    margin-bottom: 310px;
+  }
+}
 }

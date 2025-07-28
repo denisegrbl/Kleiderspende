@@ -1,16 +1,17 @@
 .formular {
-  max-width: 500px;
+  max-width: 800px;
   margin: auto;
-  padding: 20px;
+  padding: 25px;
   margin-top: 150px;
-  margin-bottom: 3%;
+  margin-bottom: 4%;
   background-color: rgba(223, 233, 233, 0.7);
   position: relative;
 }
 
 .formular label {
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  font-size: 22px;
 }
 
 .formular input[type="text"],
@@ -18,23 +19,36 @@
 .formular select {
   width: 100%;
   padding: 8px;
+  margin-top: 6px;
   margin-bottom: 10px;
   border: 1px solid #a8cecf;
   border-radius: 5px;
   box-sizing: border-box;
+  font-size: 18px;
 }
 
 .formular input[type="checkbox"] {
   margin-right: 5px;
 }
 
-.btn {
-  padding: 10px 20px;
-  background-color: #4caf50;
-  color: black;
-  border: none;
-  border-radius: 5px;
+.small-btn {
+  background: none;
+  border: 2px solid #a8cecf;
+  border-radius: 30px;
+  color: #023f42;
+  display: block;
+  font-size: 19px;
+  font-weight: semibold;
+  padding: 14px 14px;
+  max-width: 300px;
   cursor: pointer;
+  outline: 0;
+}
+
+.small-btn:active,
+.small-btn:hover {
+  color: #fff;
+  background-color: #0ab6a6;
 }
 
 .formular button:hover {
@@ -55,10 +69,16 @@
 }
 
 .angaben h6 {
-  font-size: large;
+  font-size: 22px;
 }
+
+.angaben p {
+  font-size: 18px;
+  margin-bottom: 9px;
+}
+
 .abholung {
-  font-size: large;
+  font-size: 28px;
   color: red;
 }
 .datum-zeit {
@@ -84,14 +104,110 @@
   border-radius: 30px;
   color: #699496;
   display: block;
-  font-size: 12px;
+  font-size: 18px;
   font-weight: semibold;
   padding: 11px 22px;
   cursor: pointer;
   outline: 0;
+  margin-bottom: 2%;
 }
 .back-btn:active,
 .back-btn:hover {
   color: #fff;
   background-color: #0ab6a6;
+}
+
+/* Tablets bis 1024px */
+@media screen and (max-width: 1024px) {
+  .formular {
+    padding: 20px;
+    margin-top: 160px;
+    margin-bottom: 200px;
+  }
+
+  .small-btn {
+    width: 100%;
+    max-width: none;
+  }
+
+  
+  .back-btn {
+    position: static;
+    margin: 20px auto 0;
+    display: block;
+    text-align: center;
+  }
+
+ .datum-zeit {
+   position: absolute;
+   bottom: 10px;
+   right: 10px;
+
+   font-size: 14px;
+ }
+
+ .ort {
+   position: absolute;
+   bottom: 10px;
+   left: 10px;
+
+   font-size: 14px;
+ }
+}
+
+/* Smartphones bis 768px */
+@media screen and (max-width: 767px) {
+  .formular {
+    padding: 18px;
+    margin-top: 190px;
+    max-width: 600px;
+  }
+
+  .formular label {
+    font-size: 20px;
+  }
+
+  .formular input[type="text"],
+  .formular input[type="email"],
+  .formular select {
+    font-size: 18px;
+  }
+
+  .small-btn {
+    font-size: 18px;
+    padding: 12px;
+  }
+
+  .angaben {
+    margin-bottom: 30%;
+  }
+
+  .abholung {
+    font-size: 22px;
+    text-align: center;
+  }
+
+  .back-btn {
+    margin: 20px auto;
+    display: block;
+    width: fit-content;
+    padding: 10px 20px;
+    font-size: 17px;
+  }
+
+    .datum-zeit {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+  
+      font-size: 14px;
+    }
+  
+    .ort {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+  
+      font-size: 14px;
+    }
 }

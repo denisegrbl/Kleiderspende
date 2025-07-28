@@ -10,6 +10,8 @@ import Footer from "./Components/Footer/Footer";
 import Impressum from "./Components/Impressum/Impressum";
 import Datenschutz from "./Components/Datenschutz/Datenschutz";
 import SpendenFormular from "./Components/Formular/SpendenFormular";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 const App = () => {
   return (
@@ -29,14 +31,35 @@ const App = () => {
 };
 
 const Startseite = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      const el = document.querySelector(location.hash);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }, [location]);
+
   return (
     <div>
       <Hero />
       <div className="container">
-        <Programs />
-        <Text />
-        <Spenden />
-        <About />
+        <section id="program">
+          <Programs />
+        </section>
+        <section id="program">
+          <Text />
+        </section>
+        <section id="spenden">
+          <Spenden />
+        </section>
+        <section id="about">
+          <About />
+        </section>
       </div>
     </div>
   );

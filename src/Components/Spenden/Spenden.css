@@ -33,24 +33,25 @@
 
 .spenden h6 {
   font-weight: 600;
-  font-size: 16px;
+  font-size: 28px;
   color: #61c7bdfd;
 }
 
 .spenden p {
   margin-bottom: 15px;
+  font-size: 20px;
 }
 
 .big-btn {
   background: none;
-  border: 1px solid #a8cecf;
+  border: 3px solid #a8cecf;
   border-radius: 30px;
   color: #a8cecf;
   display: block;
-  font-size: 20px;
+  font-size: 26px;
   font-weight: semibold;
-  padding: 14px 25px;
-  max-width: 126px;
+  padding: 14px 14px;
+  max-width: 132px;
   cursor: pointer;
   outline: 0;
 }
@@ -61,7 +62,7 @@
   background-color: #0ab6a6;
 }
 
-@media (max-width: 1490px) {
+@media screen and (max-width: 1023px) {
   .spenden {
     flex-direction: column;
   }
@@ -74,4 +75,18 @@
   .spenden-right {
     flex-basis: 100%;
   }
+    @media screen and (max-width: 767px) {
+      .spenden {
+        flex-direction: column;
+      }
+  
+      .spenden-left {
+        flex-basis: 100%;
+        margin: 20px;
+      }
+  
+      .spenden-right {
+        flex-basis: 100%;
+      }
+}
 }
