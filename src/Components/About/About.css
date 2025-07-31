@@ -6,17 +6,11 @@
   width: 90%;
 }
 
-.spende-left {
-  flex-basis: 40%;
-}
 
 .about-right {
   flex-basis: 80%;
 }
 
-.about-bottom {
-  margin-top: 3%;
-}
 
 .team-img {
   width: 100%;

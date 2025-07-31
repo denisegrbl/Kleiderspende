@@ -19,34 +19,11 @@ a {
   padding-left: 10%;
   padding-right: 10%;
 }
-.btn {
-  background: none;
-  border: 1px solid #699496;
-  border-radius: 30px;
-  color: #699496;
-  display: block;
-  font-size: 16px;
-  font-weight: semibold;
-  padding: 14px 25px;
-  cursor: pointer;
-  outline: 0;
-}
-
-.btn:active,
-.btn:hover {
-  color: #fff;
-  background-color: #0ab6a6;
-}
 /*--media query--*/
 @media screen and (max-width: 1023px) {
   .container {
     padding-left: 5%;
     padding-right: 5%;
-  }
-  .btn {
-    padding: 14px 22px;
-    border: 1px solid #000000;
-    color: #000000;
   }
     @media screen and (max-width: 767px) {
       .container {
@@ -54,10 +31,5 @@ a {
         padding-right: 5%;
       }
   
-      .btn {
-        padding: 14px 22px;
-        border: 1px solid #000000;
-        color: #000000;
-      }
 }
 }
