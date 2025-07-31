@@ -1,4 +1,3 @@
-import React from "react";
 import "./Programs.css";
 import afrika from "../../assets/afrika.jpg";
 import nahOsten from "../../assets/NahOsten.jpg";

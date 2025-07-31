@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./SpendenFormular.css";
 import { Link } from "react-router-dom";
 
@@ -121,7 +121,7 @@ const SpendenFormular = () => {
     return;
   }
 
-  // Geschäftsstelle: keine Kleidung erforderlich
+  // Geschäftsstelle: Kleidung ist erforderlich
   if (isGeschaeftsstelle) {
     if (!isNameValid || !isEmailValid || !isKrisengebietValid || !isKleidungValid) {
       alert("Bitte füllen Sie alle erforderlichen Felder aus und wählen Sie Kleidung aus.");
@@ -133,14 +133,6 @@ const SpendenFormular = () => {
   if (isAbholung) {
     if (!isNameValid || !isEmailValid || !isKrisengebietValid || !isKleidungValid) {
       alert("Bitte füllen Sie alle erforderlichen Felder aus und wählen Sie Kleidung aus.");
-      return;
-    }
-  }
-
-  // Nur Kleidungsspenden ohne Abholung oder Geschäftsstelle (falls du das erlauben willst)
-  if (!isAbholung && !isGeschaeftsstelle) {
-    if (!isKleidungValid) {
-      alert("Bitte wählen Sie mindestens ein Kleidungsstück aus.");
       return;
     }
   }

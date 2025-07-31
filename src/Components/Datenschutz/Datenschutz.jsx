@@ -1,4 +1,3 @@
-import React from "react";
 import "./Datenschutz.css";
 
 const Datenschutz = () => {
