@@ -50,7 +50,7 @@ const Startseite = () => {
         <section id="program">
           <Programs />
         </section>
-        <section id="program">
+        <section id="text">
           <Text />
         </section>
         <section id="spenden">
