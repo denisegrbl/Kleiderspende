@@ -29,13 +29,6 @@ nav ul li {
 a + a {
   padding-left: 1.5em;
 }
-.icon-link {
-  font-size: 26px;
-}
-.icon-link:active svg,
-.icon-link:hover svg {
-  color: #a8cecf;
-}
 .menu-icon {
   display: none;
 }
