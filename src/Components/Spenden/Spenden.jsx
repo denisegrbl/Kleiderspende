@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom"; // Importiere Link aus react-router-dom
 import "./Spenden.css";
 import packen from "../../assets/packen.jpg";

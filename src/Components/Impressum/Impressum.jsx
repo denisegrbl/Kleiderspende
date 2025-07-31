@@ -1,4 +1,3 @@
-import React from "react";
 import "./Impressum.css";
 
 const Impressum = () => {
