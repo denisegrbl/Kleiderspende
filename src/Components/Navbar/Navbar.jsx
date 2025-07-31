@@ -14,7 +14,7 @@ const Navbar = () => {
     return (
     <div>
         <nav className="container">
-            <img src={logo} alt="logo" className="logo" />
+            <img src={logo} alt="Kleiderspende Logo" className="logo" />
             <ul className={mobileMenu ? "" : "hide-mobile-menu"}>
                 <li className="nav-link">
                     <Link to="/">Home</Link>
@@ -31,7 +31,7 @@ const Navbar = () => {
             </ul>
             <img
             src={menu_icon}
-            alt=""
+            alt="Navigation öffnen"
             className="menu-icon"
             onClick={toggleMenu}
             />

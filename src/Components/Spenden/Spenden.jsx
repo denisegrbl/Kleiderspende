@@ -7,7 +7,7 @@ const Spenden = () => {
   return (
     <div className="spenden">
       <div className="spenden-left">
-        <img src={packen} alt="" className="packen-img" />
+        <img src={packen} alt="Helfende Hände packen Kleider ein" className="packen-img" />
       </div>
       <div className="spenden-right">
         <h2>Spenden</h2>
