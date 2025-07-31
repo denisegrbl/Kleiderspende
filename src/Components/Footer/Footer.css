@@ -26,7 +26,7 @@
   cursor: pointer;
 }
 
-@media screen and (max-width: 1023px) {
+@media screen and (min-width: 786px) and (max-width: 1023px) {
   .footer {
     display: block;
     text-align: center;
@@ -45,13 +45,15 @@
   .footer {
     display: block;
     text-align: center;
-    
+
   }
+
   .footer p {
     margin-left: 0;
     font-size: 18px;
-   
+
   }
+
   .footer ul li {
     margin: 10px;
   }

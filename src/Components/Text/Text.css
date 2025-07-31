@@ -13,19 +13,18 @@
   text-transform: none;
 }
 
-@media screen and (max-width: 1023px) {
+@media screen and (min-width: 786px) and (max-width: 1023px) {
   .text {
     margin-top: 0;
     margin-bottom: 0;
     padding: 20px;
   }
+}
 
 @media screen and (max-width: 767px) {
   .text {
     margin-top: 0;
     margin-bottom: 0;
     padding: 20px;
-  } 
-  
-}
+  }
 }

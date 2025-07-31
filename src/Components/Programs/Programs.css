@@ -40,14 +40,16 @@
   padding-top: 0;
 }
 
-@media screen and (max-width: 1023px) {
+@media screen and (min-width: 786px) and (max-width: 1023px) {
   .programs {
     flex-direction: column;
   }
+
   .program {
     flex-basis: 100%;
     margin: 20px;
   }
+}
 
 @media screen and (max-width: 767px) {
   .programs {
@@ -58,5 +60,4 @@
     flex-basis: 100%;
     margin: 20px;
   }
-}
 }

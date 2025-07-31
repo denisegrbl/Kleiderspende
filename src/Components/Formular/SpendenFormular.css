@@ -118,7 +118,7 @@
 }
 
 /* Tablets bis 1024px */
-@media screen and (max-width: 1024px) {
+@media screen and (min-width: 786px) and (max-width: 1023px) {
   .formular {
     padding: 20px;
     margin-top: 160px;
@@ -130,7 +130,7 @@
     max-width: none;
   }
 
-  
+
   .back-btn {
     position: static;
     margin: 20px auto 0;
@@ -138,21 +138,21 @@
     text-align: center;
   }
 
- .datum-zeit {
-   position: absolute;
-   bottom: 10px;
-   right: 10px;
+  .datum-zeit {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
 
-   font-size: 14px;
- }
+    font-size: 14px;
+  }
 
- .ort {
-   position: absolute;
-   bottom: 10px;
-   left: 10px;
+  .ort {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
 
-   font-size: 14px;
- }
+    font-size: 14px;
+  }
 }
 
 /* Smartphones bis 768px */
@@ -195,19 +195,19 @@
     font-size: 17px;
   }
 
-    .datum-zeit {
-      position: absolute;
-      bottom: 10px;
-      right: 10px;
-  
-      font-size: 14px;
-    }
-  
-    .ort {
-      position: absolute;
-      bottom: 10px;
-      left: 10px;
-  
-      font-size: 14px;
-    }
+  .datum-zeit {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+
+    font-size: 14px;
+  }
+
+  .ort {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+
+    font-size: 14px;
+  }
 }

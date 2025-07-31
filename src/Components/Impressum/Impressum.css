@@ -7,12 +7,13 @@
   margin-bottom: 28%;
 }
 
-@media screen and (max-width: 1023px) {
+@media screen and (min-width: 786px) and (max-width: 1023px) {
   .impressum {
     margin-top: 180px;
     flex-direction: column;
     margin-bottom: 310px;
   }
+}
 
 @media screen and (max-width: 767px) {
   .impressum {
@@ -20,5 +21,4 @@
     flex-direction: column;
     margin-bottom: 310px;
   }
-}
 }

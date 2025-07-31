@@ -28,13 +28,21 @@
   font-size: 20px;
 }
 
+@media screen and (min-width: 786px) and (max-width: 1023px) {
+  .hero-texth1 {
+    font-size: 40px;
+  }
+}
+
 @media screen and (max-width: 767px) {
   .hero-text h1 {
     font-size: 30px;
     max-width: 400px;
     margin: auto;
   }
+
   .hero-text p {
+
     font-size: 16px;
     margin: 15px auto;
   }

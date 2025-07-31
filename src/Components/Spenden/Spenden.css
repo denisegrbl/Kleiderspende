@@ -59,7 +59,7 @@
   background-color: #0ab6a6;
 }
 
-@media screen and (max-width: 1023px) {
+@media screen and (min-width: 786px) and (max-width: 1023px) {
   .spenden {
     flex-direction: column;
   }
@@ -72,18 +72,19 @@
   .spenden-right {
     flex-basis: 100%;
   }
-    @media screen and (max-width: 767px) {
-      .spenden {
-        flex-direction: column;
-      }
-  
-      .spenden-left {
-        flex-basis: 100%;
-        margin: 20px;
-      }
-  
-      .spenden-right {
-        flex-basis: 100%;
-      }
 }
+
+@media screen and (max-width: 767px) {
+  .spenden {
+    flex-direction: column;
+  }
+
+  .spenden-left {
+    flex-basis: 100%;
+    margin: 20px;
+  }
+
+  .spenden-right {
+    flex-basis: 100%;
+  }
 }

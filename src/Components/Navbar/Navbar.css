@@ -35,18 +35,21 @@ a + a {
 
 /*--media query--*/
 
-@media screen and (max-width: 1023px) {
+@media screen and (min-width: 786px) and (max-width: 1023px) {
   .logo {
     width: 140px;
   }
+
   nav ul li {
     margin: 10px 15px;
   }
 }
+
 @media screen and (max-width: 767px) {
   nav {
     padding: 15px 0;
   }
+
   nav ul {
     position: fixed;
     top: 0;
@@ -58,15 +61,18 @@ a + a {
     padding-top: 70px;
     transition: 0.5s;
   }
+
   nav ul li {
     display: block;
     margin: 25px 40px;
   }
+
   .menu-icon {
     display: block;
     width: 30px;
     cursor: pointer;
   }
+
   .hide-mobile-menu {
     right: -200px;
   }

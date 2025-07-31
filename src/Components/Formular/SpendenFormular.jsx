@@ -124,7 +124,7 @@ const SpendenFormular = () => {
   // Geschäftsstelle: Kleidung ist erforderlich
   if (isGeschaeftsstelle) {
     if (!isNameValid || !isEmailValid || !isKrisengebietValid || !isKleidungValid) {
-      alert("Bitte füllen Sie alle erforderlichen Felder aus und wählen Sie Kleidung aus.");
+      alert("Bitte wählen sie mindestens ein KLeidungsstück aus.");
       return;
     }
   }
@@ -132,7 +132,7 @@ const SpendenFormular = () => {
   // Abholung: Kleidung ist erforderlich
   if (isAbholung) {
     if (!isNameValid || !isEmailValid || !isKrisengebietValid || !isKleidungValid) {
-      alert("Bitte füllen Sie alle erforderlichen Felder aus und wählen Sie Kleidung aus.");
+      alert("Bitte wählen sie mindestens ein KLeidungsstück aus.");
       return;
     }
   }
